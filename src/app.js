@@ -1,16 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
- const app = document.getElementById('app');
- // Tạo form thêm task
- const form = document.createElement('form');
- const input = document.createElement('input');
- input.type = 'text';
- input.placeholder = 'Nhập công việc mới...';
- const button = document.createElement('button');
- button.textContent = 'Thêm';
+ const app = document.getElementByld('app');
+  // Tạo form thêm task
+const form = document.createElement('form');
 
- form.appendChild(input);
+const input = document.createElement('input');
+input.type = 'text';
+input.placeholder = 'Nhập công việc mới...';
+const button = document.createElement('button');
+button.textContent = 'Thêm';
+form.appendChild(input);
+form.appendChild(button);
+// Tạo danh sách công việc
+const taskList = document.createElement('ul');
 
- form.appendChild(button);
- app.appendChild(form);
+taskList.id = 'task-list';
+
+app.appendChild(form);
+app.appendChild(taskList);
+
+// Xử lý sự kiện submit form
+form.addEventListener('submit', function(e) {
+e.preventDefault();
+
+ const taskText = input.value.trim();
+
+ if (taskText) {
+
+ addTask(taskText);
+
+ input.value = '';
+
+ }
+
+ });
+
+ function addTask(text) {
+
+ const li = document.createElement('li');
+
+ li.textContent = text;
+
+ taskList.appendChild(li);
+
+}
 });
 
